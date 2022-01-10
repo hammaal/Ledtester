@@ -3,7 +3,7 @@ from adapt.intent import IntentBuilder
 import RPi.GPIO as GPIO
 
 GPIO.setmode(GPIO.BCM)
-GPIO.setup(27, GPIO.OUTPUT)
+GPIO.setup(27, GPIO.OUT)
 
 
 class Ledtester(MycroftSkill):
