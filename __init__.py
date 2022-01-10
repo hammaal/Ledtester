@@ -15,6 +15,9 @@ class Ledtester(MycroftSkill):
 		if message.data['lock'].upper() == "UNLOCK":
 			GPIO.output(27, GPIO.HIGH)
 			self.speak('Door is unlocked')
+		elif message.data['lock'].upper() == "LOCK":
+			GPIO.output(27, GPIO.LOW)
+			self.speak('Door is locked')
 								  
 
 def create_skill():
