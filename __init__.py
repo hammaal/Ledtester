@@ -25,7 +25,7 @@ class Ledtester(MycroftSkill):
 		if message.data['open'].upper() == 'OPEN':
 			GPIO.output(22, GPIO.HIGH)
 			self.speak('Blind is open')
-		elif message.data['lock'].upper() == 'CLOSE':
+		elif message.data['open'].upper() == 'CLOSE':
 			GPIO.output(22, GPIO.LOW)
 			self.speak('Blind is closed')
 								  
