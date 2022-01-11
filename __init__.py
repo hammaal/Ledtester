@@ -5,7 +5,9 @@ import RPi.GPIO as GPIO
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(27, GPIO.OUT)
 GPIO.setup(22, GPIO.OUT)
-
+GPIO.setup(17, GPIO.OUT)
+GPIO.setup(10, GPIO.OUT)
+GPIO.setup(9, GPIO.OUT)
 
 class Ledtester(MycroftSkill):
 	def __init__(self):
@@ -28,7 +30,30 @@ class Ledtester(MycroftSkill):
 		elif message.data['open'].upper() == 'CLOSE':
 			GPIO.output(22, GPIO.LOW)
 			self.speak('Blind is closed')
-								  
+			
+	@intent_handler(IntentBuilder('LightSwitch').require('command').require('onoff').require('object'))
+	def handle_Light_Switch(self, message):
+		if message.data['object'].upper() == 'FAN":
+			if message.data['onoff'].upper() == 'ON':
+				GPIO.output(17, GPIO.HIGH)
+				self.speak_dialog('fanon')
+			elif message.data['onoff'].upper() == 'OFF':
+				GPIO.output(17, GPIO.LOW)
+				self.speak_dialog('fanoff')
+		elif message.data['object'].upper() == 'LIVING LIGHT":
+			if message.data['onoff'].upper() == 'ON':
+				GPIO.output(10, GPIO.HIGH)
+				self.speak_dialog('livingon')
+			elif message.data['onoff'].upper() == 'OFF':
+				GPIO.output(10, GPIO.LOW)
+				self.speak_dialog('livingoff')
+		elif message.data['object'].upper() == 'ROOM LIGHT":
+			if message.data['onoff'].upper() == 'ON':
+				GPIO.output(9, GPIO.HIGH)
+				self.speak_dialog('roomon')
+			elif message.data['onoff'].upper() == 'OFF':
+				GPIO.output(9, GPIO.LOW)
+				self.speak_dialog('roomoff')						  
 
 def create_skill():
 	return Ledtester()
