@@ -33,21 +33,21 @@ class Ledtester(MycroftSkill):
 			
 	@intent_handler(IntentBuilder('LightSwitch').require('command').require('onoff').require('object'))
 	def handle_Light_Switch(self, message):
-		if message.data['object'].upper() == 'FAN":
+		if message.data['object'].upper() == 'FAN':
 			if message.data['onoff'].upper() == 'ON':
 				GPIO.output(17, GPIO.HIGH)
 				self.speak_dialog('fanon')
 			elif message.data['onoff'].upper() == 'OFF':
 				GPIO.output(17, GPIO.LOW)
 				self.speak_dialog('fanoff')
-		elif message.data['object'].upper() == 'LIVING LIGHT":
+		elif message.data['object'].upper() == 'LIVING LIGHT':
 			if message.data['onoff'].upper() == 'ON':
 				GPIO.output(10, GPIO.HIGH)
 				self.speak_dialog('livingon')
 			elif message.data['onoff'].upper() == 'OFF':
 				GPIO.output(10, GPIO.LOW)
 				self.speak_dialog('livingoff')
-		elif message.data['object'].upper() == 'ROOM LIGHT":
+		elif message.data['object'].upper() == 'ROOM LIGHT':
 			if message.data['onoff'].upper() == 'ON':
 				GPIO.output(9, GPIO.HIGH)
 				self.speak_dialog('roomon')
