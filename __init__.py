@@ -1,6 +1,7 @@
 from mycroft import MycroftSkill, intent_handler
 from adapt.intent import IntentBuilder
 import RPi.GPIO as GPIO
+import requests
 
 GPIO.setmode(GPIO.BCM)
 GPIO.setup(27, GPIO.OUT)
@@ -53,7 +54,14 @@ class Ledtester(MycroftSkill):
 				self.speak_dialog('roomon')
 			elif message.data['onoff'].upper() == 'OFF':
 				GPIO.output(9, GPIO.LOW)
-				self.speak_dialog('roomoff')						  
+				self.speak_dialog('roomoff')
+		elif message.data['object'].upper() == 'WIFI LIGHT':
+			if message.data['onoff'].upper() == 'ON':
+				r = requests.get('http://192.168.45.140/5/on')
+				self.speak_dialog('wifion')
+			elif message.data['onoff'].upper() == 'OFF':
+				r = requests.get('http://192.168.45.140/5/off')
+				self.speak_dialog('wifioff')
 
 def create_skill():
 	return Ledtester()
