@@ -57,10 +57,10 @@ class Ledtester(MycroftSkill):
 				self.speak_dialog('roomoff')
 		elif message.data['object'].upper() == 'WIFI LIGHT':
 			if message.data['onoff'].upper() == 'ON':
-				r = requests.get('http://192.168.45.140/5/on')
+				r = requests.get('http://192.168.42.140/LED=ON')
 				self.speak_dialog('wifion')
 			elif message.data['onoff'].upper() == 'OFF':
-				r = requests.get('http://192.168.45.140/5/off')
+				r = requests.get('http://192.168.42.140/LED=OFF')
 				self.speak_dialog('wifioff')
 
 def create_skill():
