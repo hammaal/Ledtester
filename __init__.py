@@ -62,6 +62,7 @@ class Ledtester(MycroftSkill):
 			elif message.data['onoff'].upper() == 'OFF':
 				r = requests.get('http://192.168.42.140/LED=OFF')
 				self.speak_dialog('wifioff')
+				
 
 def create_skill():
 	return Ledtester()
